@@ -106,8 +106,7 @@ async def sugerir(update: Update, context: ContextTypes.DEFAULT_TYPE):
     agendamentos = []
     arquivo = Path('agendamentos.txt')
     if not arquivo.exists():
-        await update.message.reply_text("Não há nenhum agendamento registrado.")
-        return   
+        f = open("agendamentos.txt", "x")
     
     with open("agendamentos.txt", "r",encoding='utf-8') as linhas:
         for x in linhas:
