@@ -93,7 +93,9 @@ async def cancelar(update: Update, context: ContextTypes.DEFAULT_TYPE):
     data = str(context.args[0])
     hora = str(context.args[1])
     sem_cancelados = [a for a in agendamentos if not (a["data"] == data and a["hora"] == hora)]
-    
+    if len(sem_cancelados)  == len(agendamentos):
+         await update.message.reply_text(f"Não encontramos o agendamento indicado, verifique se a data e horário estão corretos") 
+         return
     with open("agendamentos.txt", "w", encoding="utf-8") as file:
         for agendamento in sem_cancelados:
             file.write(json.dumps(agendamento) + "\n") 
